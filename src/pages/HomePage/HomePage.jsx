@@ -6,20 +6,7 @@ import styles from "./HomePage.module.scss";
 import Carousel from "../../components/Carousel/Carousel";
 import { ProductContext } from "../../context/ProductsContextProvider";
 const HomePage = () => {
-    // const [products, setProducts] = useState(null);
-    // const {refresh} = useContext(RefreshContext);
     const {products} = useContext(ProductContext);
-
-    
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     getAllProducts().then((res) => {
-    //         setLoading(false);
-    //         setProducts(res);
-    //     });
-    // }, [refresh]);
-
 
     return (
         <main className={styles.home_page}>
