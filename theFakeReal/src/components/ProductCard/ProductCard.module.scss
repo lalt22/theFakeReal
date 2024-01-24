@@ -1,6 +1,57 @@
 .card {
-    & img {
-        width: 200px;
-        height: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    & .img_holder {
+        background-color: rgba(248, 247, 247, 0.329);
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: space-around;
+        width: fit-content;
+        padding: 10px;
+
+        & img {
+            width: 400px;
+            height: 400px;
+        }
     }
+
+    & .info_div {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+
+
+        & .more_info_link {
+            padding: 10px;
+            margin-bottom: 3px;
+            border-radius: 5px; 
+            background-color: rgb(211, 204, 204);
+
+            & a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    #favourite {
+        align-self: flex-end;
+        margin: 10px;
+        height: 30px;
+        width: 30px;
+        z-index: 100;
+    }
+    
+    .hovered {
+        cursor: pointer;
+        color: red;
+    }
+    
+    .favourited {
+        color: red;
+    }
+  
 }

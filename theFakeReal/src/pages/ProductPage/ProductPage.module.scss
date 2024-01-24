@@ -1,6 +1,60 @@
+main {
+    height: 100%;
+}
+
 .page {
-    & img {
-        height: 300px;
-        width: 300px;
+    // outline: 2px solid green;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    
+    & .listing {
+        display: flex;
+        justify-content: center;
+        gap: 200px;
+
+        & .info_div {
+            & h1 {
+                font-size: 50px;
+            }
+            & h3 {
+                font-size: 30px;
+            }
+
+            & p {
+                font-size: 18px;
+            }
+
+            & h4 {
+                font-size: 26px;
+            }
+
+            & button {
+                height: 40px;
+                width: 200px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+            }
+            
+        }
+
+        & .image_div {
+
+            & img {
+                height: 600px;
+                width: 600px;
+                // outline: 1px solid red;
+            }
+        
+        }
     }
+
+    & .more_products {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        // outline: 2px solid blue;
+    }
+    
 }

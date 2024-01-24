@@ -1,8 +1,10 @@
 import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import { getProductById } from "../../../services/products";
-import { RefreshContext } from "../../context/RefreshContextProvider";
 import styles from "./ProductPage.module.scss";
+import Carousel from "../../components/Carousel/Carousel";
+import { ProductContext } from "../../context/ProductsContextProvider";
+import ProductList from "../../containers/ProductList/ProductList";
 
 const ProductPage = () => {
     const pathVars = useParams();
@@ -11,7 +13,7 @@ const ProductPage = () => {
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
-    const {refresh, setRefresh} = useContext(RefreshContext);
+    const {products} = useContext(ProductContext);
 
     useEffect(() => {
         setLoading(true);
@@ -21,18 +23,33 @@ const ProductPage = () => {
             .finally(() => setLoading(false));
     }, [id])
 
-    console.log(product);
+    const handleClick = (e) => {
+
+    }
 
     return (
         <main>
             {loading && <p>Loading...</p>}
             {!loading && product && (
                 <div className={styles.page}>
-                    <h1>{product.brand}</h1>
-                    <h3>{product.name}</h3>
-                    <img src={product.image} />
-                    <p>Composition: {product.materials}</p>
-                    <h4>Stock: {product.stock}</h4>
+                    <div className={styles.listing}>
+                        <div className={styles.image_div}>
+                            <img src={product.image} />
+                        </div>
+
+                        <div className={styles.info_div}>
+                            <h1>{product.brand}</h1>
+                            <h3>{product.name}</h3>
+                            <p>Composition: {product.materials}</p>
+                            <h4>{product.stock > 0 ? product.stock + " In Stock": "Out of Stock"}</h4>
+                            <button onClick={handleClick}>Add To Cart</button>
+                        </div>
+                    </div>
+                    
+                    <div className={styles.more_products}>
+                        <h1>See More Products</h1>
+                        <ProductList products={products.filter((product) => product.id != id).slice(0,4)}/>
+                    </div>
                 </div>
             )}
         </main>

@@ -2,6 +2,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
 
 const ProductList = ({products}) => {
+    console.log(products, "Products");
     return (
         <section className={styles.product_list}>
             {products && 
@@ -15,6 +16,7 @@ const ProductList = ({products}) => {
                         materials={product.materials}
                         name={product.name}
                         id={product.id}
+                        price={product.price}
                         stock={product.stock}
                         />
                     )

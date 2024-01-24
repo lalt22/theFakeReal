@@ -1,7 +1,7 @@
 .home_page {
     display: flex;
     flex-flow: column wrap;
-
+    align-items: center;
     & h1 {
         align-self: center;
     }
