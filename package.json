@@ -1,8 +1,8 @@
 {
+  "homepage": "https://lalt22.github.io/theFakeReal",
   "name": "thefakereal",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://lalt22.github.io/theFakeReal",
   "type": "module",
   "scripts": {
     "dev": "vite",
