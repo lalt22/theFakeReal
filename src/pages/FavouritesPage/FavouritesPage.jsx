@@ -9,14 +9,9 @@ const FavouritesPage = () => {
     const [favourites, setFavourites] = useState(null);
 
 
-    console.log("HERE");
     useEffect(() => {
         getFavouritedProducts().then((res) => setFavourites(res));
     }, [refresh]);
-
-    useEffect(() => {
-        console.log(favourites, "favouritespage");
-    }, [favourites])
 
     return (
         <main>
@@ -24,7 +19,10 @@ const FavouritesPage = () => {
                         <ProductList products={favourites} />
                     </div>
             }
-            {favourites && favourites.length == 0 && <h1>No Favourited Products</h1>}
+            {favourites && favourites.length == 0 
+            && <div className={styles.no_products}>
+                    <h1>No Favourited Products</h1>
+                </div>}
         </main>
         
     )
