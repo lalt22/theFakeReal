@@ -1,0 +1,8 @@
+.home_page {
+    display: flex;
+    flex-flow: column wrap;
+
+    & h1 {
+        align-self: center;
+    }
+}
