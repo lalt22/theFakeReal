@@ -9,14 +9,9 @@ const FavouritesPage = () => {
     const [favourites, setFavourites] = useState(null);
 
 
-    console.log("HERE");
     useEffect(() => {
         getFavouritedProducts().then((res) => setFavourites(res));
     }, [refresh]);
-
-    useEffect(() => {
-        console.log(favourites, "favouritespage");
-    }, [favourites])
 
     return (
         <main>

@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import styles from "./ProductCard.module.scss"
 import { useState, useContext, useEffect } from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { isProductFavourited, updateFavouritedStatus } from "../../../services/products";
+import { isProductFavourited, unsubscribe, updateFavouritedStatus } from "../../../services/products";
 import { RefreshContext } from "../../context/RefreshContextProvider";
 
 
@@ -32,7 +32,8 @@ const ProductCard = ({
     }
 
     useEffect (() => {
-        isProductFavourited(id).then((res) => setIsFavourited(res.favourited))
+        isProductFavourited(id).then((res) => setIsFavourited(res.favourited));
+        unsubscribe(id);
 
     }, [refresh])
 

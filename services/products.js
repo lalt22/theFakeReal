@@ -6,6 +6,8 @@ import {
     updateDoc,
     query,
     where,
+    increment,
+    onSnapshot,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 
@@ -72,4 +74,43 @@ export const isProductFavourited = async (id) => {
         console.log(productIsFavourited, "PRODUCT FAVOURITED?")
         return productIsFavourited;
     }
+}
+
+export const getProductsInCart = async () => {
+    const q = query(collection(db, "products"), where("numInCart", ">", 0))
+
+    const querySnapshot = await getDocs(q);
+    const dataToReturn = querySnapshot.docs.map((doc) => {
+        return {
+            id: doc.id,
+            ...doc.data(),
+        }
+    })
+
+    return dataToReturn;
+}
+
+export const addToCart = async (id) => {
+    const productRef = doc(db, "products", id);
+    // const docSnap = await getDoc(docRef);
+    await updateDoc(productRef, {
+        numInCart: increment(1),
+        stock: increment(-1)
+    })
+}
+
+
+export const removeFromCart = async (id) => {
+    const productRef = doc(db, "products", id);
+    // const docSnap = await getDoc(docRef);
+    await updateDoc(productRef, {
+        numInCart: increment(-1),
+        stock: increment(1)
+    })
+}
+
+export const unsubscribe = (id) => {
+    onSnapshot(doc(db, "products", id), (doc) => {
+        return (doc.data());
+    })
 }

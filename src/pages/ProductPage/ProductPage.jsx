@@ -1,9 +1,10 @@
 import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
-import { getProductById } from "../../../services/products";
+import { addToCart, getProductById, removeFromCart, unsubscribe } from "../../../services/products";
 import styles from "./ProductPage.module.scss";
 import { ProductContext } from "../../context/ProductsContextProvider";
 import ProductList from "../../containers/ProductList/ProductList";
+import { RefreshContext } from "../../context/RefreshContextProvider";
 
 const ProductPage = () => {
     const pathVars = useParams();
@@ -13,6 +14,10 @@ const ProductPage = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
     const {products} = useContext(ProductContext);
+    const {refresh, setRefresh} = useContext(RefreshContext);
+    
+
+
 
     useEffect(() => {
         setLoading(true);
@@ -20,10 +25,24 @@ const ProductPage = () => {
             .then((res) => setProduct(res))
             .catch((e) => setError(e))
             .finally(() => setLoading(false));
-    }, [id])
+        setProduct(unsubscribe(id))
+    }, [refresh])
 
-    const handleClick = (e) => {
+    
 
+    const handleClickAdd = (e) => {
+        if (product.stock > 0) {
+            addToCart(id).then(() => {
+                setRefresh(refresh + 1);
+            })
+        } 
+    }
+
+    const handleClickRemove = (e) => {
+        if (product.numInCart > 0) {
+            removeFromCart(id).then(() => {setRefresh(refresh + 1);})
+        }
+       
     }
 
     return (
@@ -41,7 +60,8 @@ const ProductPage = () => {
                             <h3>{product.name}</h3>
                             <p>Composition: {product.materials}</p>
                             <h4>{product.stock > 0 ? product.stock + " In Stock": "Out of Stock"}</h4>
-                            <button onClick={handleClick}>Add To Cart</button>
+                            {product.stock > 0 && <button onClick={handleClickAdd}>Add To Cart</button>}
+                            {<button onClick={handleClickRemove}>Remove From Cart</button>}
                         </div>
                     </div>
                     
