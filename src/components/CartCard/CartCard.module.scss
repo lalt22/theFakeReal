@@ -1,0 +1,14 @@
+img {
+    height: 300px;
+    width: 300px;
+}
+
+.cart_modifiers {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+    align-items: center;
+    & button {
+        height: 30px;
+    }
+}

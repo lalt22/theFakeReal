@@ -1,6 +1,6 @@
 import {useState, useContext, useEffect} from "react";
 import { getProductsInCart } from "../../../services/products";
-import ProductList from "../../containers/ProductList/ProductList";
+import CartList from "../../containers/CartList/CartList"
 import { RefreshContext } from "../../context/RefreshContextProvider";
 
 const CartPage = () => {
@@ -16,7 +16,7 @@ const CartPage = () => {
 
     return <main>
         {productsInCart && <div>
-            <ProductList products={productsInCart} />
+            <CartList products={productsInCart} />
             </div>}
     </main>
 }
