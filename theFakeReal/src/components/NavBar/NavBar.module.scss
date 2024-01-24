@@ -1,0 +1,22 @@
+.nav_bar {
+    height: fit-content;
+    padding: 30px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(185, 183, 183, 0.329);
+
+
+
+    & a {
+        text-decoration: none;
+
+        &[class="active"] {
+            color: red;
+        }
+    }
+
+    
+   
+}
