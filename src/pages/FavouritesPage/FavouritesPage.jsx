@@ -24,7 +24,10 @@ const FavouritesPage = () => {
                         <ProductList products={favourites} />
                     </div>
             }
-            {favourites && favourites.length == 0 && <h1>No Favourited Products</h1>}
+            {favourites && favourites.length == 0 
+            && <div className={styles.no_products}>
+                    <h1>No Favourited Products</h1>
+                </div>}
         </main>
         
     )

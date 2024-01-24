@@ -9,14 +9,11 @@ import { RefreshContext } from "../../context/RefreshContextProvider";
 const ProductCard = ({
     image="",
     brand="",
-    category="",
-    materials="",
     name="",
     id,
     stock="",
     price=""
 }) => {
-    // const [favourited, setFavourited] = useState(false);
     const [isActive, setIsActive] = useState(false)
     const [isFavourited, setIsFavourited] = useState(false);
     const {refresh, setRefresh} = useContext(RefreshContext);
@@ -26,7 +23,7 @@ const ProductCard = ({
         updateFavouritedStatus(id, !isFavourited).then(() => setRefresh(refresh + 1))
     }
 
-    const toggleColorOn =(e) => {
+    const toggleColorOn = (e) => {
         setIsActive(true);
     }
     
@@ -37,17 +34,7 @@ const ProductCard = ({
     useEffect (() => {
         isProductFavourited(id).then((res) => setIsFavourited(res.favourited))
 
-    }, [id, refresh])
-
-    useEffect(() => {
-        if(isFavourited) {
-            console.log("Item favourited");
-        }
-        else {
-            console.log("Item unfavourited");
-        }
-        console.log(isFavourited, "favourited");
-    }, [isFavourited])
+    }, [refresh])
 
     return (
         <article className={styles.card}>

@@ -1,7 +1,4 @@
-import ProductList from "../../containers/ProductList/ProductList";
-import {useState, useEffect, useContext} from "react";
-import { RefreshContext } from "../../context/RefreshContextProvider";
-import { getAllProducts } from "../../../services/products";
+import {useContext} from "react";
 import styles from "./HomePage.module.scss";
 import Carousel from "../../components/Carousel/Carousel";
 import { ProductContext } from "../../context/ProductsContextProvider";

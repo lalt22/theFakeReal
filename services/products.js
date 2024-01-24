@@ -3,11 +3,7 @@ import {
     doc,
     getDoc,
     getDocs,
-    deleteDoc,
-    addDoc,
     updateDoc,
-    increment,
-    onSnapshot,
     query,
     where,
 } from "firebase/firestore";

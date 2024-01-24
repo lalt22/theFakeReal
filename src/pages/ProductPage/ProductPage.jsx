@@ -2,7 +2,6 @@ import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import { getProductById } from "../../../services/products";
 import styles from "./ProductPage.module.scss";
-import Carousel from "../../components/Carousel/Carousel";
 import { ProductContext } from "../../context/ProductsContextProvider";
 import ProductList from "../../containers/ProductList/ProductList";
 
