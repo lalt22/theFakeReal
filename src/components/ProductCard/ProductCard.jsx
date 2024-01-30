@@ -31,6 +31,10 @@ const ProductCard = ({
         setIsActive(false);
     }
 
+    const handleClick = () => {
+        setRefresh(refresh + 1);
+    }
+
     useEffect (() => {
         isProductFavourited(id).then((res) => setIsFavourited(res.favourited));
         unsubscribe(id);
@@ -58,7 +62,7 @@ const ProductCard = ({
                 <p>Stock: {stock}</p>
                 <h4>A${price}</h4>
                 <div className={styles.more_info_link}>
-                    <Link to={`/products/${id}`}>More Info</Link>
+                    <Link to={`/products/${id}`} onClick={handleClick}>More Info</Link>
                 </div>
                 
             </div>

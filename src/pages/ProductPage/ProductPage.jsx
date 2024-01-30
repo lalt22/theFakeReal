@@ -15,8 +15,6 @@ const ProductPage = () => {
     const [loading, setLoading] = useState(null);
     const {products} = useContext(ProductContext);
     const {refresh, setRefresh} = useContext(RefreshContext);
-    
-
 
 
     useEffect(() => {
@@ -26,6 +24,7 @@ const ProductPage = () => {
             .catch((e) => setError(e))
             .finally(() => setLoading(false));
         setProduct(unsubscribe(id))
+       
     }, [refresh])
 
     
@@ -41,6 +40,7 @@ const ProductPage = () => {
     const handleClickRemove = (e) => {
         if (product.numInCart > 0) {
             removeFromCart(id).then(() => {setRefresh(refresh + 1);})
+
         }
        
     }

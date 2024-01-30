@@ -1,4 +1,7 @@
+import { useContext, useEffect } from "react";
 import styles from "./CartCard.module.scss";
+import { RefreshContext } from "../../context/RefreshContextProvider";
+import { addToCart, removeFromCart } from "../../../services/products";
 
 const CartCard = ({
 image="",
@@ -8,11 +11,22 @@ id,
 stock,
 numInCart,
 price}) => {
-    const handleAdd = (e) => {
 
+    const {refresh, setRefresh} = useContext(RefreshContext);
+    console.log("Card for " + id);
+ 
+    const handleAdd = (e) => {
+        if (stock > 0) {
+            addToCart(id).then(() => {
+                setRefresh(refresh + 1);
+            })
+
+        } 
     }
     const handleRemove = (e) => {
-
+        if (numInCart > 0) {
+            removeFromCart(id).then(() => {setRefresh(refresh + 1);})
+        }
     }
     return <article>
         <div>

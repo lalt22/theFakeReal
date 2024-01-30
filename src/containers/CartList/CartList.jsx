@@ -1,7 +1,8 @@
+import { useContext } from "react";
 import CartCard from "../../components/CartCard/CartCard"
 
+
 const CartList = ({products}) => {
-    console.log(products, "CARTPRODUCRS");
     return (
         <section>
             {products && 
@@ -9,6 +10,7 @@ const CartList = ({products}) => {
                     return (
                         <CartCard 
                         key={product.id}
+                        id={product.id}
                         image={product.image}
                         brand={product.brand}
                         price={product.price}
