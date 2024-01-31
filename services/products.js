@@ -8,6 +8,10 @@ import {
     where,
     increment,
     onSnapshot,
+    setDoc,
+    getAggregateFromServer,
+    sum,
+    deleteDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 
@@ -71,7 +75,6 @@ export const isProductFavourited = async (id) => {
         const productIsFavourited  = {
             favourited: product.favourited
         };
-        console.log(productIsFavourited, "PRODUCT FAVOURITED?")
         return productIsFavourited;
     }
 }
@@ -91,21 +94,39 @@ export const getProductsInCart = async () => {
 }
 
 export const addToCart = async (id) => {
+    console.log("Adding product: " + id);
     const productRef = doc(db, "products", id);
-    // const docSnap = await getDoc(docRef);
     await updateDoc(productRef, {
         numInCart: increment(1),
         stock: increment(-1)
     })
+    const toCartRef = doc(db, "cart", id);
+    
+    const docSnap = await getDoc(productRef);
+    console.log(docSnap.data().price);
+
+    await setDoc(toCartRef, {
+        merge: true,
+        id: id,
+        numInCart: docSnap.data().numInCart,
+        price: docSnap.data().price * docSnap.data().numInCart,
+    });
 }
 
 
 export const removeFromCart = async (id) => {
+    console.log("Removing product: " + id);
     const productRef = doc(db, "products", id);
-    // const docSnap = await getDoc(docRef);
     await updateDoc(productRef, {
         numInCart: increment(-1),
         stock: increment(1)
+    })
+
+    const cartRef = doc(db, "cart", id);
+    const docSnap = await getDoc(productRef);
+    await updateDoc(cartRef, {
+        numInCart: increment(-1),
+        price: docSnap.data().price * docSnap.data().numInCart,
     })
 }
 
@@ -113,4 +134,29 @@ export const unsubscribe = (id) => {
     onSnapshot(doc(db, "products", id), (doc) => {
         return (doc.data());
     })
+}
+
+export const getPriceOfCart = async () => {
+    const coll = collection(db, "cart");
+    const snapshot = await getAggregateFromServer(coll, {
+        totalCost: sum("price")
+    })
+
+    return snapshot.data().totalCost.toFixed(2);
+}
+
+export const emptyCart = async () => {
+    const querySnapshot = await getDocs(collection(db, "cart"));
+    querySnapshot.forEach((doc) => {
+        deleteDoc(doc.ref);
+    })
+
+    const productsQuery = query(collection(db, "products"), where("numInCart", ">", 0))
+    const productsSnapshot = await getDocs(productsQuery);
+    productsSnapshot.forEach((doc) => {
+        updateDoc(doc.ref, {
+            numInCart: 0
+        })
+    })
+
 }

@@ -2,7 +2,6 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
 
 const ProductList = ({products}) => {
-    console.log(products, "Products");
     return (
         <section className={styles.product_list}>
             {products && 
