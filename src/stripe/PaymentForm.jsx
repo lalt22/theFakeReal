@@ -3,11 +3,10 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { emptyCart } from "../../services/products";
 import { RefreshContext } from "../context/RefreshContextProvider";
-import { query } from "express";
+import styles from "./PaymentForm.module.scss";
 
 const PaymentForm = ({ priceOfCart }) => {
     const [success, setSuccess] = useState(false);
-    const [clientSecret, setClientSecret] = useState("");
     const {refresh, setRefresh} = useContext(RefreshContext);
     const stripe = useStripe();
     const elements = useElements();
@@ -42,37 +41,17 @@ const PaymentForm = ({ priceOfCart }) => {
         else {
             console.log("Error:", error.message);
         }
-        // const response = await axios.post("http://localhost:4000/create-checkout-session");
-
-        // useEffect(() => {
-        //     const query = new URLSearchParams(window.location.search);
-        //     if(query.get("success")){
-        //         setSuccess(true);
-        //     }
-        //     if(query.get("cancelled")) {
-        //         setSuccess(false);
-        //     }
-        // }, [refresh])
 
     }
 
-    
-
-    const options = {
-        clientSecret
-    }
-    
     return (
         <>
             {!success ?
             <form onSubmit={handleSubmit}>
-                <fieldset className="FormGroup">
-                    <div className="FormRow">
+                <fieldset className={styles.input}>
                         <CardElement />
-                    </div>   
                 </fieldset>
-                <button>Pay</button>
-                {/* <button>Pay</button> */}
+                <button>Pay Now</button>
             </form>
             :
             <div>

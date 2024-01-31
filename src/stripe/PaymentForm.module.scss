@@ -1,0 +1,25 @@
+form {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+
+    & .input {
+        border-radius: 10px;
+    }
+
+    & button {
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        font-size: larger;
+        
+
+        &:hover {
+            background-color: rgb(154, 238, 154);
+            cursor: pointer;
+            
+        }
+        
+    }
+}
+

@@ -12,7 +12,7 @@ const StripeContainer = ({priceOfCart}) => {
     return (
         <div>
             <Elements stripe={stripeTestPromise}>
-                <PaymentForm priceOfCart={priceOfCart}/>
+              <PaymentForm priceOfCart={priceOfCart}/>
             </Elements>
         </div>
     )

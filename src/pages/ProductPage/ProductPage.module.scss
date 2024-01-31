@@ -1,9 +1,11 @@
+@use "../../partials/mixins";
+
 main {
     height: 100%;
 }
 
 .page {
-    // outline: 2px solid green;
+    margin-top: 50px;
     width: 100%;
     display: flex;
     flex-flow: column;
@@ -11,8 +13,9 @@ main {
     
     & .listing {
         display: flex;
+        flex-flow: row wrap;
         justify-content: center;
-        gap: 200px;
+        gap: 50px;
 
         & .info_div {
             & h1 {
@@ -30,21 +33,40 @@ main {
                 font-size: 26px;
             }
 
-            & button {
-                height: 40px;
-                width: 200px;
-                font-family: 'Montserrat', sans-serif;
-                font-weight: 700;
+            .button_div {
+                display: flex; 
+                gap: 10px;
+                justify-content: flex-start;
+
+                & button {
+                    height: 40px;
+                    width: 200px;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 700;
+                    // border: none;
+                    // cursor: pointer;
+                    border-radius: 10px;
+                    @include mixins.standard_button_style;
+
+                    &:hover {
+                       @include mixins.standard_button_style_hover;
+                    }
+                }
             }
+
+            
             
         }
 
         & .image_div {
-
+                height: min-content;
+                width: max-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             & img {
-                height: 600px;
-                width: 600px;
-                // outline: 1px solid red;
+                height: 60vh;
+                width: 60vh;
             }
         
         }
@@ -57,4 +79,6 @@ main {
         // outline: 2px solid blue;
     }
     
+    
 }
+

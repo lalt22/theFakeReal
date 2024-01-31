@@ -5,15 +5,15 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(185, 183, 183, 0.329);
-
-
+    background-color: #f5cedb;
+    position: fixed;
+    z-index: 1000;
 
     & a {
         text-decoration: none;
-
+        color: black;
         &[class="active"] {
-            color: red;
+            color: #496a0f;
         }
     }
 

@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    padding: 10px;
 
     & .img_holder {
         background-color: rgba(248, 247, 247, 0.329);
@@ -13,8 +14,8 @@
         padding: 10px;
 
         & img {
-            width: 15rem;
-            height: 15rem;
+            width: 20rem;
+            height: 20rem;
         }
     }
 
@@ -29,6 +30,10 @@
             margin-bottom: 3px;
             border-radius: 5px; 
             background-color: rgb(211, 204, 204);
+
+            &:hover {
+                background-color: #f5cedb;
+            }
 
             & a {
                 text-decoration: none;

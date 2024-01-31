@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import styles from "./CartCard.module.scss";
 import { RefreshContext } from "../../context/RefreshContextProvider";
 import { addToCart, removeFromCart } from "../../../services/products";
+import {Link} from "react-router-dom";
+
 
 const CartCard = ({
 image="",
@@ -30,18 +32,18 @@ price}) => {
     }
     return <article>
         <div>
-            <img src={image}/>
+            <Link to={`/products/${id}`}><img src={image}/></Link>
         </div>
         <div>
             <h2>{brand}</h2>
             <h4>{name}</h4>
             <div className={styles.cart_modifiers}>
-                <button onClick={handleRemove}>-</button>
+                <button className={styles.visibleBtn} onClick={handleRemove}>-</button>
                 <p>{numInCart} in Cart</p>
-                <button onClick={handleAdd}>+</button>
+                <button className={stock > 0 ? styles.visibleBtn : styles.hiddenBtn} onClick={handleAdd}>+</button>
             </div>
 
-            <h4>Total Price: A${numInCart * price}</h4>
+            <h4>A${(numInCart * price).toFixed(2)}</h4>
         </div>
     </article>
 }

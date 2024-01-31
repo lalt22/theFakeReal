@@ -1,0 +1,17 @@
+.page_wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100vw;
+
+    & .payment_div {
+        margin-top: 100px;
+        width: 40vw;
+    }
+
+    & .cart_wrapper {
+        margin-top: 80px;
+        width: 40vw;     
+    }
+}
+

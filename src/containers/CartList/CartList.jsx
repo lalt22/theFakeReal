@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import CartCard from "../../components/CartCard/CartCard"
-
+import styles from "./CartList.module.scss";
 
 const CartList = ({products}) => {
     return (
-        <section>
+        <section className={styles.card_section}>
             {products && 
                 products.map((product) => {
                     return (

@@ -60,8 +60,11 @@ const ProductPage = () => {
                             <h3>{product.name}</h3>
                             <p>Composition: {product.materials}</p>
                             <h4>{product.stock > 0 ? product.stock + " In Stock": "Out of Stock"}</h4>
-                            {product.stock > 0 && <button onClick={handleClickAdd}>Add To Cart</button>}
-                            {product.numInCart > 0 && <button onClick={handleClickRemove}>Remove From Cart</button>}
+                            <div className={styles.button_div}>
+                                {product.stock > 0 && <button onClick={handleClickAdd}>Add To Cart</button>}
+                                {product.numInCart > 0 && <button onClick={handleClickRemove}>Remove From Cart</button>}
+                            </div>
+                            
                         </div>
                     </div>
                     
