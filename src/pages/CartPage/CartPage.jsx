@@ -20,10 +20,7 @@ const CartPage = () => {
         });     
     }, [refresh])
 
-    useEffect(() => {
-        console.log("Price of cart", priceOfCart)
-    }, [priceOfCart])
-
+    console.log(productsInCart, "CART PRODUCTS");
     return (
     <main>
         {productsInCart && 

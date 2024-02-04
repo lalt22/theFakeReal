@@ -11,12 +11,14 @@ const CartList = ({products}) => {
                         <CartCard 
                         key={product.id}
                         id={product.id}
+                        prod_id={product.prod_id}
                         image={product.image}
                         brand={product.brand}
                         price={product.price}
                         stock={product.stock}
                         name={product.name}
                         numInCart={product.numInCart}
+                        size={product.size}
                     />
                     )
                 })}

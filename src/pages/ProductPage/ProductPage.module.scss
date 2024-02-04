@@ -18,6 +18,8 @@ main {
         gap: 50px;
 
         & .info_div {
+            display: flex;
+            flex-flow: column;
             & h1 {
                 font-size: 50px;
             }
@@ -43,14 +45,42 @@ main {
                     width: 200px;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 700;
-                    // border: none;
-                    // cursor: pointer;
                     border-radius: 10px;
                     @include mixins.standard_button_style;
 
                     &:hover {
                        @include mixins.standard_button_style_hover;
                     }
+                }
+            }
+
+            
+            
+        }
+
+        & .variants {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            margin-top: auto;   
+
+            & .variant_link {
+                cursor: pointer;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                padding-left: 15px;
+                padding-right: 15px;
+                border-radius: 20px;
+            
+                &:hover {
+                    background-color: #f5cedb;
+                }
+
+                &.selected {
+                    background-color: #f5cedb;
+                }
+
+                &.unselected {
+                    background-color: white;
                 }
             }
 

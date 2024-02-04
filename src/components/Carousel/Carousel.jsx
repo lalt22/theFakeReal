@@ -38,6 +38,8 @@ const Carousel = ({products}) => {
                             id={products[activeCardIndex].id}
                             price={products[activeCardIndex].price}
                             stock={products[activeCardIndex].stock}
+                            size={products[activeCardIndex].size}
+                            hasVariants={products[activeCardIndex].hasVariants}
                 />
                 <div className={styles.buttons_div}>
                     <button onClick={nextCard} className={[styles.carousel_button, styles.carousel_button__next].join(" ")}>&gt;</button>

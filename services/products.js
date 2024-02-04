@@ -16,6 +16,9 @@ import {
 import { db } from "../config/firebase";
 
 
+
+  
+
 export const getAllProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "products"));
     const dataToReturn = querySnapshot.docs.map((doc) => {
@@ -27,8 +30,33 @@ export const getAllProducts = async () => {
     return dataToReturn;
 }
 
+export const getVariantSizes = async (id) => {
+    const querySnapshot = await getDocs(collection(db, "products", id, "sizes"));
+    if (querySnapshot.empty) {
+        return null;
+    }
+    const dataToReturn = querySnapshot.docs.map((doc) => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    })
+    console.log(dataToReturn, "data");
+    return dataToReturn;
+}
+
 export const getProductById = async (id) => {
     const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+
+    if(!docSnap.exists()) {
+        throw new Error("Product Not Found");
+    }
+    return {id: docSnap.id, ...docSnap.data()};
+}
+
+export const getVariantSizeById = async (id, varId) => {
+    const docRef = doc(db, "products", id, "sizes", varId);
     const docSnap = await getDoc(docRef);
 
     if(!docSnap.exists()) {
@@ -80,7 +108,7 @@ export const isProductFavourited = async (id) => {
 }
 
 export const getProductsInCart = async () => {
-    const q = query(collection(db, "products"), where("numInCart", ">", 0))
+    const q = query(collection(db, "cart"), where("numInCart", ">", 0))
 
     const querySnapshot = await getDocs(q);
     const dataToReturn = querySnapshot.docs.map((doc) => {
@@ -89,7 +117,7 @@ export const getProductsInCart = async () => {
             ...doc.data(),
         }
     })
-
+    console.log(dataToReturn, "RETURNED CART DATA");
     return dataToReturn;
 }
 
@@ -103,16 +131,53 @@ export const addToCart = async (id) => {
     const toCartRef = doc(db, "cart", id);
     
     const docSnap = await getDoc(productRef);
-    console.log(docSnap.data().price);
-
     await setDoc(toCartRef, {
         merge: true,
-        id: id,
+        prod_id: id,
+        image: docSnap.data().image,
         numInCart: docSnap.data().numInCart,
         price: docSnap.data().price * docSnap.data().numInCart,
+        stock: docSnap.data().stock
     });
 }
 
+export const addVariantSizeToCart = async (prodId, varId) => {
+    const varRef = doc(db, "products", prodId, "sizes", varId);
+    const prodRef = doc(db, "products", prodId);
+
+    await updateDoc(varRef, {
+        numInCart: increment(1),
+        stock: increment(-1)
+    })
+
+    const toCartRef = doc(db, "cart", varId);
+    const prodSnap = await getDoc(prodRef);
+    const varSnap = await getDoc(varRef)
+    console.log(prodSnap.data(), "DATA");
+    await setDoc(toCartRef, {
+        merge: true,
+        id: varId,
+        prod_id: prodId,
+        image: prodSnap.data().image,
+        numInCart: varSnap.data().numInCart,
+        price: prodSnap.data().price * varSnap.data().numInCart,
+        size: varSnap.data().size,
+        stock: varSnap.data().stock
+    })
+    
+}
+
+// export const unsubscribeVariantSize = (prodId, varId) => {
+//     onSnapshot(doc(db, "products", prodId, "sizes", varId), (doc) => {
+        
+//         const dataToReturn = {
+//             id: doc.id,
+//             ...doc.data()
+//         }
+//         console.log(dataToReturn, "datatoReturn");
+//         return dataToReturn;
+//     })
+// }
 
 export const removeFromCart = async (id) => {
     console.log("Removing product: " + id);
@@ -130,8 +195,27 @@ export const removeFromCart = async (id) => {
     })
 }
 
+export const removeVariantSizeFromCart = async (prodId, varId) => {
+    const varRef = doc(db, "products", prodId, "sizes", varId);
+    const prodRef = doc(db, "products", prodId);
+    await updateDoc(varRef, {
+        numInCart: increment(-1),
+        stock: increment(1)
+    })
+
+    const cartRef = doc(db, "cart", varId);
+    const varSnap = await getDoc(varRef);
+    const prodSnap = await getDoc(prodRef);
+    await updateDoc(cartRef, {
+        varId: varId,
+        numInCart: increment(-1),
+        price: prodSnap.data().price * varSnap.data().numInCart
+    })
+}
+
 export const unsubscribe = (id) => {
     onSnapshot(doc(db, "products", id), (doc) => {
+        
         return (doc.data());
     })
 }
