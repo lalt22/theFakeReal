@@ -1,3 +1,5 @@
+@use "../../partials/mixins";
+
 .home_page {
     display: flex;
     flex-flow: column wrap;
@@ -5,4 +7,5 @@
     & h1 {
         align-self: center;
     }
+    @include mixins.position_under_nav;
 }

@@ -31,7 +31,7 @@ app.post("/payment", cors(), async (req, res) => {
             message: "Payment Successful",
             success: true
         })
-        res.render("checkout", {client_secret: payment.client_secret});
+        // res.render("checkout", {client_secret: payment.client_secret});
     } catch(error) {
         console.log("error", error);
         res.json({

@@ -142,7 +142,7 @@ export const getPriceOfCart = async () => {
         totalCost: sum("price")
     })
 
-    return snapshot.data().totalCost.toFixed(2);
+    return Math.round(snapshot.data().totalCost);
 }
 
 export const emptyCart = async () => {

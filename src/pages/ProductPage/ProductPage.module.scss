@@ -5,7 +5,7 @@ main {
 }
 
 .page {
-    margin-top: 50px;
+    @include mixins.position_under_nav;
     width: 100%;
     display: flex;
     flex-flow: column;

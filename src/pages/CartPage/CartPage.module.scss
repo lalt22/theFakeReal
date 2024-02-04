@@ -1,16 +1,19 @@
+@use "../../partials/mixins";
+
 .page_wrapper {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
     width: 100vw;
+    @include mixins.position_under_nav;
 
     & .payment_div {
-        margin-top: 100px;
         width: 40vw;
+        margin-top: 20px;
     }
 
     & .cart_wrapper {
-        margin-top: 80px;
+        margin-top: 20px;
         width: 40vw;     
     }
 }

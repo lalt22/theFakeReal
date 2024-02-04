@@ -17,10 +17,18 @@ const Carousel = ({products}) => {
         setActiveCardIndex(0);
     }
 
+    const toEnd = () => {
+        setActiveCardIndex(products.length-1);
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.carousel}>
-                <button onClick={prevCard} className={[styles.carousel_button, styles.carousel_button__prev].join(" ")}>&lt;</button>
+                <div className={styles.buttons_div}>
+                    <button onClick={prevCard} className={[styles.carousel_button, styles.carousel_button__prev].join(" ")}>&lt;</button>
+                    <button onClick={toStart} className={styles.carousel_button}>Go To Start</button> 
+                </div>
+                
                 <ProductCard  key={products[activeCardIndex].id}
                             image={products[activeCardIndex].image}
                             brand={products[activeCardIndex].brand}
@@ -31,10 +39,12 @@ const Carousel = ({products}) => {
                             price={products[activeCardIndex].price}
                             stock={products[activeCardIndex].stock}
                 />
-                <button onClick={nextCard} className={[styles.carousel_button, styles.carousel_button__next].join(" ")}>&gt;</button>
+                <div className={styles.buttons_div}>
+                    <button onClick={nextCard} className={[styles.carousel_button, styles.carousel_button__next].join(" ")}>&gt;</button>
+                    <button onClick={toEnd} className={styles.carousel_button}>Go To End</button>
+                </div>
                 
             </div>
-            <button onClick={toStart} className={styles.carousel_button}>Go To Start</button>
         </div>
 
     )

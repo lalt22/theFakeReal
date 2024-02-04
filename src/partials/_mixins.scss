@@ -7,3 +7,7 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+@mixin position_under_nav {
+    margin-top: 70px;
+}

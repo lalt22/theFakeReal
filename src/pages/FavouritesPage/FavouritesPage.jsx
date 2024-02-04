@@ -14,7 +14,7 @@ const FavouritesPage = () => {
     }, [refresh]);
 
     return (
-        <main>
+        <main className={styles.favourites_page}>
             {favourites && <div className={styles.favourites_container}>
                         <ProductList products={favourites} />
                     </div>

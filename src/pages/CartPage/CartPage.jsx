@@ -35,12 +35,12 @@ const CartPage = () => {
                 }
                 
             </div>
-        {/* {productsInCart.length > 0 &&  */}
+        {productsInCart.length > 0 && 
             <div className={styles.payment_div}>
                 <h3>Total: A${priceOfCart} </h3>
                 <StripeContainer priceOfCart={priceOfCart}/>
             </div>
-        {/* } */}
+        }
         </div>
         }
 
