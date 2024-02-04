@@ -97,7 +97,10 @@ const ProductPage = () => {
     }
 
     const extraProducts = getRandomCards();
-
+    let sortedVariants = [];
+    if (variants) {
+        sortedVariants = variants.sort(function(a, b) {return a.size.localeCompare(b.size, undefined, {numeric:true})});
+    }
 
     return (
         <main>
@@ -137,7 +140,7 @@ const ProductPage = () => {
                             }
                             <div className={styles.variants}>
                                 {/* <h5>Select a size: </h5> */}
-                                {variants && variants.map((variant) => {
+                                {variants && sortedVariants.map((variant) => {
                                     
                                     return (
                                         <a className={[selectedVariant && variant.id == selectedVariant.id ? styles.selected : styles.unselected,  styles.variant_link].join(" ")} onClick={() => handleClickVariant(variant)} key={variant.id}> 
