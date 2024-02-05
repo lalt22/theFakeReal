@@ -157,7 +157,7 @@ const ProductPage = () => {
                     
                     <div className={styles.more_products}>
                         <h1>See More Products</h1>
-                        <ProductList extraProducts={extraProducts}/>
+                        <ProductList products={extraProducts}/>
                     </div>
                 </div>
             )}

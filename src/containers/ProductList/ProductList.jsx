@@ -1,11 +1,11 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
 
-const ProductList = ({extraProducts}) => {
+const ProductList = ({products}) => {
     return (
         <section className={styles.product_list}>
-            {extraProducts && 
-                extraProducts.map((product) => {
+            {products && 
+                products.map((product) => {
                     return (
                         <ProductCard
                         key={product.id}

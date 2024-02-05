@@ -13,9 +13,14 @@ const FavouritesPage = () => {
         getFavouritedProducts().then((res) => setFavourites(res));
     }, [refresh]);
 
+    useEffect(() => {
+        console.log(favourites, "FAVOURITES");
+    }, [favourites])
+
     return (
         <main className={styles.favourites_page}>
             {favourites && <div className={styles.favourites_container}>
+                {console.log("MAKING LIST OF FAVOURITES")}
                         <ProductList products={favourites} />
                     </div>
             }
