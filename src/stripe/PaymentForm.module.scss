@@ -1,0 +1,26 @@
+@use "../partials/mixins";
+
+form {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+
+    & .input {
+        border-radius: 10px;
+    }
+
+    & button {
+        height: 50px;
+        font-size: larger;
+
+        @include mixins.standard_button_style;
+        
+
+        &:hover {
+            @include mixins.standard_button_style_hover;
+            
+        }
+        
+    }
+}
+

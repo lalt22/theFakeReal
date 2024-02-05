@@ -1,0 +1,20 @@
+@use "../../partials/mixins";
+
+.page_wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100vw;
+    @include mixins.position_under_nav;
+
+    & .payment_div {
+        width: 40vw;
+        margin-top: 20px;
+    }
+
+    & .cart_wrapper {
+        margin-top: 20px;
+        width: 40vw;     
+    }
+}
+

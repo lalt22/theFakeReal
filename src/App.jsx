@@ -21,10 +21,10 @@ function App() {
           <BrowserRouter >
             <NavBar />
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="theFakeReal/" element={<HomePage />} />
               <Route path="/products/:id" element={<ProductPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/favourites" element={<FavouritesPage/>} />
+              <Route path="theFakeReal/cart" element={<CartPage />} />
+              <Route path="theFakeReal/favourites" element={<FavouritesPage/>} />
             </Routes>
           </BrowserRouter>
       </ProductContextProvider>

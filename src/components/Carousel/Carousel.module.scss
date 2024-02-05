@@ -1,0 +1,38 @@
+@use "../../partials/mixins";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carousel {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    gap: 50px;
+    height: fit-content;
+}
+
+.buttons_div {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.carousel_button {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    align-self: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 20px;
+
+    @include mixins.standard_button_style;
+
+    &:hover {
+       @include mixins.standard_button_style_hover;
+    }
+}

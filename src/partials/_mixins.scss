@@ -1,0 +1,13 @@
+@mixin standard_button_style_hover {
+    background-color: #b1b321;
+}
+
+@mixin standard_button_style {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@mixin position_under_nav {
+    margin-top: 70px;
+}

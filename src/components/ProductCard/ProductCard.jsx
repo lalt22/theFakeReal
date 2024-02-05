@@ -12,7 +12,10 @@ const ProductCard = ({
     name="",
     id,
     stock="",
-    price=""
+    price="",
+    category="",
+    size= "",
+    hasVariants
 }) => {
     const [isActive, setIsActive] = useState(false)
     const [isFavourited, setIsFavourited] = useState(false);
@@ -29,6 +32,10 @@ const ProductCard = ({
     
     const toggleColorOff = (e) => {
         setIsActive(false);
+    }
+
+    const handleClick = () => {
+        setRefresh(refresh + 1);
     }
 
     useEffect (() => {
@@ -55,10 +62,10 @@ const ProductCard = ({
             <div className={styles.info_div}>
                 <h2>{brand}</h2>
                 <h4>{name}</h4>
-                <p>Stock: {stock}</p>
+                <p>{hasVariants ? "See Page for Stock" : "Stock: " + stock}</p>
                 <h4>A${price}</h4>
                 <div className={styles.more_info_link}>
-                    <Link to={`/products/${id}`}>More Info</Link>
+                    <Link to={`/products/${id}`} onClick={handleClick}>More Info</Link>
                 </div>
                 
             </div>

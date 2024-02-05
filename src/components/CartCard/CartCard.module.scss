@@ -1,3 +1,17 @@
+@use "../../partials/mixins";
+article {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-top: 5px;
+}
+.img_link {
+    :hover {
+        -webkit-filter: blur(5px) saturate(1);
+        filter: blur(5px) saturate(1);
+    }
+}
 img {
     height: 300px;
     width: 300px;
@@ -8,7 +22,22 @@ img {
     flex-flow: row wrap;
     gap: 30px;
     align-items: center;
+
+
     & button {
         height: 30px;
+        border: none;
+        @include mixins.standard_button_style;
+        &.visibleBtn {
+            display: block;
+        }
+
+        &.hiddenBtn {
+            display: none;
+        }
+
+        &:hover {
+            @include mixins.standard_button_style_hover;
+        }
     }
 }
