@@ -15,6 +15,7 @@ const ProductPage = () => {
     const [loading, setLoading] = useState(null);
     const {products} = useContext(ProductContext);
     const {refresh, setRefresh} = useContext(RefreshContext);
+    const [extraProducts, setExtraProducts] = useState(null);
 
     //VARIANT CART STUFF
     const [variants, setVariants] = useState(null);
@@ -36,11 +37,21 @@ const ProductPage = () => {
        
     }, [refresh])
     
+
+    //If we no longer have variants, unselect current variant
     useEffect(() => {
         if (!variants) {
             setSelectedVariant(null);
         }
+       
     }, [variants])
+
+
+    //Only want to update the see more on first render of a new ID
+    //NOT ON REFRESH
+    useEffect(() => {
+        setExtraProducts(getRandomCards())
+    }, [id])
 
     const handleClickVariant = (variant) => {
         setSelectedVariant(variant);
@@ -73,10 +84,6 @@ const ProductPage = () => {
         }
     }
 
-    const handleVariants = () => {
-        getVariantSizes(id).then((res) => setVariants(res));
-    }
-
 
     const getRandomCards = () => {
         let cardIndexes = [];
@@ -96,7 +103,7 @@ const ProductPage = () => {
         return randProducts;
     }
 
-    const extraProducts = getRandomCards();
+    ;
     let sortedVariants = [];
     if (variants) {
         sortedVariants = variants.sort(function(a, b) {return a.size.localeCompare(b.size, undefined, {numeric:true})});

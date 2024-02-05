@@ -17,6 +17,7 @@ const ProductList = ({products}) => {
                         id={product.id}
                         price={product.price}
                         stock={product.stock}
+                        hasVariants={product.hasVariants}
                         />
                     )
                 })}
