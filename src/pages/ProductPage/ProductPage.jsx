@@ -48,7 +48,6 @@ const ProductPage = () => {
 
 
     //Only want to update the see more on first render of a new ID
-    //NOT ON REFRESH
     useEffect(() => {
         setExtraProducts(getRandomCards())
     }, [id])

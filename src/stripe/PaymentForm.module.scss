@@ -14,10 +14,11 @@ form {
         font-size: larger;
 
         @include mixins.standard_button_style;
-        
+        background-color: #8a2846;
+        color: #ffe0e9;
 
         &:hover {
-            @include mixins.standard_button_style_hover;
+            filter: blur(1px);
             
         }
         

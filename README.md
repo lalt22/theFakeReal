@@ -47,3 +47,8 @@ To complete payment, enter the following card details:
 - CVV: Any 3 digits
 - Expiry: Any future date in the form MM/YY
 - ZIP Code: Any 5 digits
+
+## Known Bugs/Issues
+
+- Cart Page:
+  - Adding a new product to cart from the cart page is very unpredictable. Sometimes the button appears, sometimes it doesn't

@@ -3,7 +3,18 @@
     flex-flow: column;
     justify-content: space-between;
     padding: 10px;
+    border-radius: 10px;
+    
+    &:hover {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        & img {
+            filter: blur(1px);
+        }
+        
+    }
 
+    
     & .img_holder {
         background-color: rgba(248, 247, 247, 0.329);
         display: flex;
@@ -23,23 +34,18 @@
         display: flex;
         flex-flow: column wrap;
         align-items: center;
+        
+    
 
 
-        & .more_info_link {
-            padding: 10px;
-            margin-bottom: 3px;
-            border-radius: 5px; 
-            background-color: rgb(211, 204, 204);
+      & .card_link {
+        text-decoration: none;
+        color: black;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
 
-            &:hover {
-                background-color: #f5cedb;
-            }
-
-            & a {
-                text-decoration: none;
-                color: black;
-            }
-        }
+      }
     }
 
     #favourite {
@@ -52,11 +58,15 @@
     
     .hovered {
         cursor: pointer;
-        color: red;
+        color: #b9375e;
     }
     
     .favourited {
-        color: red;
+        color: #b9375e;
+
+        &:hover {
+            color: black;
+        }
     }
   
 }

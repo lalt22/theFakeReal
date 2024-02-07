@@ -2,10 +2,24 @@
 
 .home_page {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     align-items: center;
+
+
     & h1 {
         align-self: center;
     }
+
+
+    & .banners_div {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 30px;
+        & .banner {
+            width: 80%
+        }
+    }
+    
     @include mixins.position_under_nav;
 }
