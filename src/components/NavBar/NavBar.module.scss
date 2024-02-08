@@ -43,10 +43,49 @@
             height: 32px;
         }
     }
-    
+}
+
+.burger_nav {
+    background-color: #f5cedb;
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: flex-start;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    align-items: center;
+
+    & .burger {
+        margin-right: 10px;
+        align-items: center;
+    }
+
+    & .route_list {
+        background-color: #f5cedb;
+        display: flex;
+        gap: 20px;
+        & img {
+            width: 24px;
+            height: 24px;
+        }
+        margin-right: 10px;
+    }
+
+    & .site_home_title {
+        margin-right: auto;
+        margin-left: 20px;
+        & a {
+            text-decoration: none;
+            color: black;
+            &[class="active"] {
+                color: #8a2846;
+            }
+
+            & h1 {
+                font-size: 24px;
+            }
+        }
+    }
 
     
-
-    
-   
 }

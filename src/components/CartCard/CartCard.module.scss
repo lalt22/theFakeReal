@@ -1,20 +1,45 @@
 @use "../../partials/mixins";
+@use "../../partials/media";
 article {
     display: flex;
     flex-flow: column;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    margin-top: 5px;
+    max-height: 800px;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+
+    @include media.xsmall-device;
+    @include media.phone;
+    @include media.tablet;
+    @include media.laptop;
+    @include media.desktop;
 }
 .img_link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
     :hover {
         -webkit-filter: blur(5px) saturate(1);
         filter: blur(5px) saturate(1);
     }
+    // outline: 2px solid green;
+    & img {
+        width: 95%;
+        height: 95%;
+        border-radius: 20px;
+    }
+    
 }
-img {
-    height: 300px;
-    width: 300px;
+
+.info {
+    // outline: 2px solid green;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 0px;
 }
 
 .cart_modifiers {

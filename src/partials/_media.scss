@@ -1,0 +1,73 @@
+@mixin xsmall-device {
+    @media only screen and (max-width: 600px) {
+        @content;
+        max-width: 250px;
+    }
+}
+
+@mixin xsmall_carousel {
+    @media only screen and (min-width: 601px) and (max-width: 767px){
+        @content;
+        flex-flow: column;
+        gap: 0;
+    }
+}
+
+@mixin xsmall_cart{
+    @media only screen and (min-width: 601px) and (max-width: 767px){
+        @content;
+        flex-flow: column;
+        gap: 0;
+    }
+}
+
+
+@mixin phone {
+    @media only screen and (min-width: 601px) and (max-width: 767px){
+        @content;
+        max-height: 700px;
+        max-width: 300px;
+    }
+}
+
+
+@mixin phone_carousel {
+    @media only screen and (min-width: 601px) and (max-width: 767px){
+        @content;
+        gap: 10px;
+    }
+}
+
+@mixin phone_cart{
+    @media only screen and (min-width: 601px) and (max-width: 767px){
+        @content;
+        flex-flow: column;
+        gap: 0;
+    }
+}
+
+
+@mixin tablet {
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        @content;
+        max-height: 800px;
+        max-width: 400px;
+    }
+}
+
+@mixin laptop {
+    @media only screen and (min-width: 992px) and (max-width: 1199px){
+        @content;
+        max-height: 800px;
+        max-width: 400px;
+    }
+}
+
+@mixin desktop {
+    @media only screen and (min-width: 1200px) {
+        @content;
+
+        max-height: 800px;
+        max-width: 400px;
+    }
+}

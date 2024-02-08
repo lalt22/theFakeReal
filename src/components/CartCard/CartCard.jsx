@@ -45,21 +45,21 @@ price}) => {
             
         }
     }
-    return <article>
-        <div>
-            <Link to={`/products/${prod_id}`} className={styles.img_link}><img src={image}/></Link>
-        </div>
-        <div>
-            {size && <h4>Size: {size}</h4>}
-            <div className={styles.cart_modifiers}>
-                <button className={styles.visibleBtn} onClick={handleRemove}>-</button>
-                <p>{numInCart} in Cart</p>
-                <button className={stock > 0 ? styles.visibleBtn : styles.hiddenBtn} onClick={handleAdd}>+</button>
-            </div>
+    return (
+        <article>
+            <Link to={`/products/${prod_id}`} className={styles.img_link}><img src={image} /></Link>
+            <div className={styles.info}>
+                {size && <h4>Size: {size}</h4>}
+                <div className={styles.cart_modifiers}>
+                    <button className={styles.visibleBtn} onClick={handleRemove}>-</button>
+                    <p>{numInCart} in Cart</p>
+                    <button className={stock > 0 ? styles.visibleBtn : styles.hiddenBtn} onClick={handleAdd}>+</button>
+                </div>
 
-            <h4>A${(price).toFixed(2)}</h4>
-        </div>
-    </article>
+                <h4>A${(price).toFixed(2)}</h4>
+            </div>
+        </article>
+    )
 }
 
 export default CartCard;

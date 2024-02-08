@@ -1,4 +1,5 @@
 @use "../../partials/mixins";
+@use "../../partials/media";
 
 .wrapper {
     display: flex;
@@ -7,25 +8,54 @@
 }
 
 .carousel {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-around;
-    gap: 50px;
-    height: fit-content;
+   
+    @include media.phone_carousel;
+    @include media.xsmall_carousel;
+
+    & .not_mobile {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+        gap: 50px;
+        height: fit-content;
+    
+    }
+
+    & .mobile {
+        display: flex;
+        flex-flow: column;
+        gap: 10px;
+        & .row_btns {
+            display: flex;
+            flex-flow: row;
+            // outline: 2px solid green;
+            justify-content: space-between;
+        }
+    }
 }
 
 .buttons_div {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+    align-items: center;
     gap: 20px;
+    position: absolute;
+}
+
+.left_btns {
+    position: relative;
+    
+}
+
+.right_btns {
+    position: relative;
 }
 
 .carousel_button {
     display: flex;
     align-items: center;
     height: 50px;
-    align-self: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     padding: 20px;
@@ -38,3 +68,4 @@
        @include mixins.standard_button_style_hover;
     }
 }
+

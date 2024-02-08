@@ -1,11 +1,29 @@
 @use "../../partials/mixins";
+@use "../../partials/media";
 
+.page {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 10px;
+    
+& .empty_cart_title {
+    margin-top: 80px;
+    align-self: center;
+}  
+
+
+}
 .page_wrapper {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
+    
     width: 100vw;
+    height: 100%;
     @include mixins.position_under_nav;
+    @include media.phone_cart;
+    @include media.xsmall_cart;
 
     & .payment_div {
         width: 40vw;
@@ -17,4 +35,3 @@
         width: 40vw;     
     }
 }
-

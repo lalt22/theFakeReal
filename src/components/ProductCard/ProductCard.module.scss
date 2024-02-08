@@ -1,10 +1,21 @@
+@use "../../partials/media";
+
 .card {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     padding: 10px;
     border-radius: 10px;
-    
+
+    max-width: 400px;
+    max-height: 800px;
+
+    @include media.xsmall-device;
+    @include media.phone;
+    @include media.tablet;
+    @include media.laptop;
+    @include media.desktop;
+
     &:hover {
         cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -25,8 +36,9 @@
         padding: 10px;
 
         & img {
-            width: 20rem;
-            height: 20rem;
+            width: 80%;
+            height: 80%;
+            border-radius: 20px;
         }
     }
 

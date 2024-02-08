@@ -10,13 +10,14 @@ import {far} from "@fortawesome/free-regular-svg-icons"
 import CartPage from "./pages/CartPage/CartPage";
 import FavouritesPage from "./pages/FavouritesPage/FavouritesPage";
 import ProductContextProvider from "./context/ProductsContextProvider";
+import WidthContextProvider from "./context/MobileContext";
 
 library.add(far, faHeart, fas);
 
 function App() {
-
   return (
     <RefreshContextProvider>
+      <WidthContextProvider>
       <ProductContextProvider>
           <BrowserRouter >
             <NavBar />
@@ -28,6 +29,7 @@ function App() {
             </Routes>
           </BrowserRouter>
       </ProductContextProvider>
+      </WidthContextProvider>
     </RefreshContextProvider>
   )
 }

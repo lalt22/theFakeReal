@@ -22,29 +22,22 @@ const CartPage = () => {
 
     console.log(productsInCart, "CART PRODUCTS");
     return (
-    <main>
-        {productsInCart && 
+    <div className={styles.page}>
+        {productsInCart && productsInCart.length == 0 && 
+                <h2 className={styles.empty_cart_title}>Cart is Empty</h2>
+        }
+        {productsInCart && productsInCart.length > 0 &&
         <div className={styles.page_wrapper}>
-            <div className={styles.cart_wrapper}>
-                    <CartList products={productsInCart} />
-                {productsInCart.length == 0 && 
-                    <h2>Cart is Empty</h2>
-                }
-                
-            </div>
-        {productsInCart.length > 0 && 
-            <div className={styles.payment_div}>
-                <h3>Total: A${priceOfCart} </h3>
-                <StripeContainer priceOfCart={priceOfCart}/>
-            </div>
-        }
+            <CartList products={productsInCart} />
+            {productsInCart.length > 0 && 
+                <div className={styles.payment_div}>
+                    <h3>Total: A${priceOfCart} </h3>
+                    <StripeContainer priceOfCart={priceOfCart}/>
+                </div>
+            }
         </div>
-        }
-
-
-        
-        
-    </main>
+        }   
+    </div>
     )
 }
 
